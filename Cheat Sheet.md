@@ -216,6 +216,10 @@ CUDA streams enables a developer to execute functions concurrently on multiple p
 * Transposition
   * Used to improve memory bursts by putting values used by a thread near eachother
   * Example: Transpose a matrix so that consecutive columns in a row are easily accessible
+* Compaction
+  * Specifying work to avoid idle threads, and use them for other work instead.
+  * Example: If you need to filter out elements out of an array, and 85 out of 100 elements in an array fulfill a criteria, you can use an if-statement to have only the 85 copied. In that case 15 threads will do useless computation and set useless values in the corresponding slots in the copy array.
+But if only 8 out of 100 elements qualify, an if-statement inside of the kernel would mean you have to make 100 threads, 8 will do the work, 92 will do nothing useful. Instead you can specify the desirable areas in other ways, and have 92 threads do something else in the meantime, saving space and general capacity.
 * Tiling (using shared memory)
   * By identifying a block or tile of global memory content that are access by multiple threads, one can load the block or tile into shared memory. Multiple threads can then use the shared memory for quicker access. Bottom line: reduce lookups in global memory.
   * Example: Matrix multiplication, copy a row to shared memory. See the code for the matrix multiplication programming exercise
