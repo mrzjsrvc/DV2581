@@ -270,6 +270,13 @@ $$
 \underbrace{\mathbf{C}}_\text{convolution matrix}*\underbrace{\overline{n}}_\text{image vector}=\underbrace{\mathbf{P}}_\text{processed image}
 $$
 
+### Padding and Transposition
+
+Padding involves filling in a sparse matrix with zeroes to make it a symmetric rectangle and reduce control flow divergence when operations are done using it. 
+Transposition flips the rectangular matrix diagonally; i.e. makes the first column into the first row, the second column into the second row etc., this was done during Lab 3 in the AoS-SoA conversion.
+
+![PaddingAndTransposition](https://i.postimg.cc/gJ568nGt/padtra.png)
+
 ## Work-efficiency
 
 A parallel algorithm can be work-efficient or not. The parallel algorithm is compared to the best performing sequential algorithm. Using the ordo notation, the parallel algorithm is said to be work-efficient if it requires as many operations as the sequential algorithm.
